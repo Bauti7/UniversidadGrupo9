@@ -112,6 +112,12 @@ public class UniversidadGrupo9 {
 //          
 //          }
 
+
+
+            //---------- ETAPA 2 ----------
+            
+            
+
             AlumnoData alu = new AlumnoData();
             MateriaData mater = new MateriaData();
             InscripcionData id = new InscripcionData();
@@ -121,11 +127,23 @@ public class UniversidadGrupo9 {
             
             Inscripcion insc = new Inscripcion(9,bauti,mate);
             
+            // ---------- GUARDAR INSCRIPCIÓN ----------
+            
             //id.guardarInscripcion(insc);
+            
+            
+            // ---------- ACTUALIZAR NOTA ----------
             
             //id.actualizarNota(7, 10, 2);
             
+            
+            // ---------- BORRAR INSCRIPCIÓN ----------
+            
             //id.borrarInscripcion(10, 2);
+            
+            
+            // ---------- LISTAR INSCRIPCIONES ----------
+            
             
 //            System.out.println("---------- Listado de Inscripciones ----------");
 //            
@@ -140,6 +158,9 @@ public class UniversidadGrupo9 {
 //                System.out.println(" ");
 //            
 //            }
+
+
+            // ---------- LISTAR INSCRIPCIONES POR ID ----------
             
 //            System.out.println("---------- Listado de Inscripciones por ID ----------");
 //            for(Inscripcion idinsc : id.obtenerInscripcionesPorId(8)){
@@ -153,6 +174,9 @@ public class UniversidadGrupo9 {
 //                System.out.println(" ");
 //                
 //            }
+
+
+            // ---------- LISTAR MATERIAS CURSADAS POR ID ----------
             
 //            System.out.println("---------- Listado de Materias Cursadas por ID ----------");
 //            
@@ -166,6 +190,8 @@ public class UniversidadGrupo9 {
 //            
 //            }
 
+            // ---------- LISTAR MATERIAS NO CURSADAS POR ID ----------
+
 //              System.out.println("---------- Listado de Materias no Cursadas por ID ----------");
 //            
 //            for(Materia materianocursada : id.obtenerMateriasNoCursadas(8)){
@@ -174,6 +200,8 @@ public class UniversidadGrupo9 {
 //                System.out.println("Nombre de Materia: " + materianocursada.getNombre());
 //                
 //            }
+
+            // ---------- LISTAR ALUMNOS POR MATERIAS ----------
           
 //             System.out.println("---------- Listado de Alumnos por Materia ----------"); 
 //             
