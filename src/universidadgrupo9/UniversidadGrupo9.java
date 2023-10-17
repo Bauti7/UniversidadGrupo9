@@ -118,14 +118,14 @@ public class UniversidadGrupo9 {
             
             
 
-            AlumnoData alu = new AlumnoData();
-            MateriaData mater = new MateriaData();
-            InscripcionData id = new InscripcionData();
-            
-            Alumno bauti = alu.buscarAlumno(10);
-            Materia mate = mater.buscarMateria(2);
-            
-            Inscripcion insc = new Inscripcion(9,bauti,mate);
+            //AlumnoData alu = new AlumnoData();
+//            MateriaData mater = new MateriaData();
+//            InscripcionData id = new InscripcionData();
+//            
+//            Alumno bauti = alu.buscarAlumno(10);
+//            Materia mate = mater.buscarMateria(2);
+//            
+//            Inscripcion insc = new Inscripcion(9,bauti,mate);
             
             // ---------- GUARDAR INSCRIPCIÓN ----------
             
