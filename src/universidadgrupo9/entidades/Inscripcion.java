@@ -3,7 +3,7 @@ package universidadgrupo9.entidades;
 
 public class Inscripcion {
     
-    private int idInscripcion;
+    private int idInscripto;
     private int nota;
     private Alumno alumno;
     private Materia materia;
@@ -11,8 +11,8 @@ public class Inscripcion {
     public Inscripcion() {
     }
 
-    public Inscripcion(int idInscripcion, int nota, Alumno alumno, Materia materia) {
-        this.idInscripcion = idInscripcion;
+    public Inscripcion(int idInscripto, int nota, Alumno alumno, Materia materia) {
+        this.idInscripto = idInscripto;
         this.nota = nota;
         this.alumno = alumno;
         this.materia = materia;
@@ -24,12 +24,12 @@ public class Inscripcion {
         this.materia = materia;
     }
 
-    public int getIdInscripcion() {
-        return idInscripcion;
+    public int getIdInscripto() {
+        return idInscripto;
     }
 
-    public void setIdInscripcion(int idInscripcion) {
-        this.idInscripcion = idInscripcion;
+    public void setIdInscripto(int idInscripto) {
+        this.idInscripto = idInscripto;
     }
 
     public int getNota() {
@@ -60,7 +60,7 @@ public class Inscripcion {
     public String toString() {
         
         String insc = 
-                "Inscripción: " + idInscripcion +
+                "Inscripción: " + idInscripto +
                 "Apellido: "+ alumno.getApellido() +
                 "Nombre: "+ alumno.getNombre() +
                 "Nombre de la Materia: " + materia.getNombre();

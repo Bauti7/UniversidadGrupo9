@@ -24,7 +24,7 @@ public class AlumnoData {
     public void guardarAlumno(Alumno alumno){
     
         String sql = "INSERT INTO alumno (dni,apellido,nombre,fechaDeNacimiento,estado)"
-                + "VALUE (?, ?, ?, ?, ?);";
+                + "VALUE (?, ?, ?, ?, ?)";
         
         try {
             
