@@ -14,6 +14,10 @@ public class UniversidadGrupo9 {
 
     public static void main(String[] args) {
         
+        // ---------- ENTREGA 1 ----------
+        
+        
+        
         //Alumno carlos = new Alumno(11,41789231,"Gómez","Juan carlos",LocalDate.of(2000, 1, 26),true);
         
         //AlumnoData alu = new AlumnoData();
@@ -114,7 +118,7 @@ public class UniversidadGrupo9 {
 
 
 
-            //---------- ETAPA 2 ----------
+            //---------- ENTREGA 2 ----------
             
             
 
