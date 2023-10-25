@@ -5,6 +5,8 @@
  */
 package universidadgrupo9.vistas;
 
+import java.awt.Color;
+
 /**
  *
  * @author Bau
@@ -15,6 +17,7 @@ public class MenuVistas extends javax.swing.JFrame {
      * Creates new form MenuVistas
      */
     public MenuVistas() {
+        System.out.println("hola2");
         initComponents();
     }
 
@@ -54,8 +57,18 @@ public class MenuVistas extends javax.swing.JFrame {
         );
 
         jAlumno.setText("Alumno");
+        jAlumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAlumnoActionPerformed(evt);
+            }
+        });
 
         jMenu3.setText("Formulario de Alumno");
+        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu3ActionPerformed(evt);
+            }
+        });
         jAlumno.add(jMenu3);
 
         jMenuBar1.add(jAlumno);
@@ -85,6 +98,11 @@ public class MenuVistas extends javax.swing.JFrame {
         jMenuBar1.add(jConsultas);
 
         jSalir.setText("Salir");
+        jSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSalirActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jSalir);
 
         setJMenuBar(jMenuBar1);
@@ -97,11 +115,37 @@ public class MenuVistas extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio)
+            .addComponent(escritorio, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAlumnoActionPerformed
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jAlumnoActionPerformed
+
+
+    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+        System.out.println("hola de nuevo");
+        escritorio.removeAll();
+        escritorio.repaint();
+        System.out.println("hola");
+        GestionAlumnos alumno = new GestionAlumnos();
+        alumno.setVisible(true);
+        alumno.getContentPane().setBackground(new Color(68, 167, 132));
+        escritorio.add(alumno);
+        escritorio.moveToFront(alumno);
+
+    }//GEN-LAST:event_jMenu3ActionPerformed
+
+    private void jSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSalirActionPerformed
+
+        dispose();
+
+
+    }//GEN-LAST:event_jSalirActionPerformed
 
     /**
      * @param args the command line arguments
