@@ -58,6 +58,12 @@ public class GestionMaterias extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Estado:");
 
+        jtAño.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtAñoActionPerformed(evt);
+            }
+        });
+
         jbBuscar.setText("Buscar");
         jbBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -196,6 +202,7 @@ public class GestionMaterias extends javax.swing.JInternalFrame {
         
         try{
         String nombre= jtNombre.getText();
+        //NO OLVIDAR ARREGLAR ESTO AÑO
         Integer año=Integer.parseInt(jtAño.getText());
           Boolean estado= jrEstado.isSelected();
         if(nombre.isEmpty() || año==0){
@@ -241,7 +248,6 @@ public class GestionMaterias extends javax.swing.JInternalFrame {
         try{
         
         Integer id= Integer.parseInt(jtCodigo.getText());
-        //Integer años=Integer.parseInt(jtAño.getText());
         
                
        materiaActual=mat.buscarMateria(id);
@@ -249,10 +255,10 @@ public class GestionMaterias extends javax.swing.JInternalFrame {
        if(materiaActual!=null){
            
        jtNombre.setText(materiaActual.getNombre());
-       
+       jtAño.setText(String.valueOf(materiaActual.getAño()));
        jrEstado.setSelected(materiaActual.isEstado());
       
-      //FALTA ESTA PORONGA
+     
        }
         
         
@@ -331,6 +337,10 @@ public class GestionMaterias extends javax.swing.JInternalFrame {
         dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_jbSalirActionPerformed
+
+    private void jtAñoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtAñoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtAñoActionPerformed
 
 
     

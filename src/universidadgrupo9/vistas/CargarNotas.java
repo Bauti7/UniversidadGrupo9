@@ -6,8 +6,11 @@
 package universidadgrupo9.vistas;
 
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import universidadgrupo9.accesoADatos.AlumnoData;
+import universidadgrupo9.accesoADatos.InscripcionData;
+import universidadgrupo9.accesoADatos.MateriaData;
 import universidadgrupo9.entidades.Alumno;
 import universidadgrupo9.entidades.Materia;
 
@@ -17,27 +20,33 @@ import universidadgrupo9.entidades.Materia;
  */
 public class CargarNotas extends javax.swing.JInternalFrame {
 
-    private AlumnoData aluData = new AlumnoData();
+    /*private AlumnoData aluData = new AlumnoData();
     private Alumno alumnoActual = null;
-
+     */
+    private MateriaData matData = new MateriaData();
+    private Materia materiaActual = null;
     private ArrayList<Materia> listaM;
     private ArrayList<Alumno> listaA;
 
+    private InscripcionData inscData;
+    private MateriaData mData;
+    private AlumnoData aData;
     private DefaultTableModel modelo;
 
     public CargarNotas() {
-        
+
         initComponents();
-        armarCabeceraTabla();
+        aData = new AlumnoData();
+        listaA = (ArrayList<Alumno>) aData.listarAlumnos();
+        modelo = new DefaultTableModel();
+        inscData = new InscripcionData();
+        mData = new MateriaData();
         cargaNotas();
-        
-        
-        
+        armarCabeceraTabla();
+       
+
     }
 
-  
-    
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -73,6 +82,15 @@ public class CargarNotas extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtAlumnos.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jtAlumnosAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         jScrollPane1.setViewportView(jtAlumnos);
 
         jbGuardar.setText("Guardar");
@@ -152,8 +170,6 @@ public class CargarNotas extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jcSelecAlumnosActionPerformed
 
-    
-    
     private void cargaNotas() {
 
         for (Alumno item : listaA) {
@@ -161,9 +177,8 @@ public class CargarNotas extends javax.swing.JInternalFrame {
         }
 
     }
-    
-    
-      private void armarCabeceraTabla() {
+
+    private void armarCabeceraTabla() {
 
         ArrayList<Object> filaCabecera = new ArrayList<>();
         filaCabecera.add(" Codigo: ");
@@ -178,16 +193,43 @@ public class CargarNotas extends javax.swing.JInternalFrame {
         jtAlumnos.setModel(modelo);
 
         
+        Alumno selec = (Alumno) jcSelecAlumnos.getSelectedItem();
+        List<Materia> lista = (ArrayList) inscData.obtenerMateriaCursada(selec.getIdAlumno());
+        
+        DefaultTableModel modelo=(DefaultTableModel) jtAlumnos.getModel();
+        modelo.setRowCount(0);
+        
+        for (Materia m : lista) {
+
+            modelo.addRow(new Object[]{m.getIdMateria(), m.getNombre(), m.getAño()});
+        }
     }
+
+   /* private void llenarTabla() {
+      Alumno selec = (Alumno) jcSelecAlumnos.getSelectedItem();
+        List<Materia> lista = (ArrayList) inscData.obtenerMateriaCursada(selec.getIdAlumno());
+        
+        DefaultTableModel modelo=(DefaultTableModel) jtAlumnos.getModel();
+        modelo.setRowCount(0);
+        
+        for (Materia m : lista) {
+
+            modelo.addRow(new Object[]{m.getIdMateria(), m.getNombre(), m.getAño()});
+        }
+    }
+*/
     
-      
-      
-      
-    
+
+
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         dispose();
 // TODO add your handling code here:
     }//GEN-LAST:event_jbSalirActionPerformed
+
+    private void jtAlumnosAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jtAlumnosAncestorAdded
+
+
+    }//GEN-LAST:event_jtAlumnosAncestorAdded
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -66,7 +66,7 @@ public class FormularioInscripcion extends javax.swing.JInternalFrame {
     }
 
     private void borrarFilaTabla() {
-        int indice = modelo.getRowCount()-1;
+        int indice = modelo.getRowCount() - 1;
 
         for (int i = indice; i >= 0; i--) {
 
@@ -83,24 +83,20 @@ public class FormularioInscripcion extends javax.swing.JInternalFrame {
 
         for (Materia m : listaM) {
 
-            modelo.addRow(new Object [] {m.getIdMateria(), m.getNombre(), m.getAño()});
+            modelo.addRow(new Object[]{m.getIdMateria(), m.getNombre(), m.getAño()});
         }
     }
 
-   private void cargaDatosInscriptas(){
-   Alumno selec =(Alumno) cboxAlumno.getSelectedItem();
-   List <Materia> lista=(ArrayList) inscData.obtenerMateriaCursada(selec.getIdAlumno());
-   for(Materia m:lista){
-   
-   modelo.addRow(new Object[] {m.getIdMateria(), m.getNombre(), m.getAño()});
-   }
-   
-   
-   
-   
-   }
-   
-   
+    private void cargaDatosInscriptas() {
+        Alumno selec = (Alumno) cboxAlumno.getSelectedItem();
+        List<Materia> lista = (ArrayList) inscData.obtenerMateriaCursada(selec.getIdAlumno());
+        for (Materia m : lista) {
+
+            modelo.addRow(new Object[]{m.getIdMateria(), m.getNombre(), m.getAño()});
+        }
+
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -272,8 +268,6 @@ public class FormularioInscripcion extends javax.swing.JInternalFrame {
 
     private void cboxAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxAlumnoActionPerformed
 
-        
-        
 
     }//GEN-LAST:event_cboxAlumnoActionPerformed
 
@@ -287,44 +281,40 @@ public class FormularioInscripcion extends javax.swing.JInternalFrame {
     private void radioNoInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNoInscriptasActionPerformed
 
         borrarFilaTabla();
-       radioInscriptas.setSelected(false);
-       cargaDatosNoInscriptas();
-       jBInscribir.setEnabled(true);
-       jBAInscribir.setEnabled(false);
+        radioInscriptas.setSelected(false);
+        cargaDatosNoInscriptas();
+        jBInscribir.setEnabled(true);
+        jBAInscribir.setEnabled(false);
 
-        
-        
-        
 
     }//GEN-LAST:event_radioNoInscriptasActionPerformed
 
     private void radioInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioInscriptasActionPerformed
 
-
         borrarFilaTabla();
-       radioNoInscriptas.setSelected(false);
-       cargaDatosInscriptas();
-       jBAInscribir.setEnabled(true);
-       jBInscribir.setEnabled(false);
+        radioNoInscriptas.setSelected(false);
+        cargaDatosInscriptas();
+        jBAInscribir.setEnabled(true);
+        jBInscribir.setEnabled(false);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_radioInscriptasActionPerformed
 
     private void jBInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBInscribirActionPerformed
 
-        int filaSeleccionada=jtMaterias.getSelectedRow();
-        if(filaSeleccionada !=-1){
-        
-        Alumno a=(Alumno) cboxAlumno.getSelectedItem();
-        
-        int idMateria=(Integer)modelo.getValueAt(filaSeleccionada, 0);
-        String nombreMateria=(String) modelo.getValueAt(filaSeleccionada, 1);
-        int año= (Integer) modelo.getValueAt(filaSeleccionada, 2);
-        Materia m=new Materia (idMateria, nombreMateria, año, true);
-        
-        Inscripcion i=new Inscripcion(0,a,m);
-        inscData.guardarInscripcion(i);
-        borrarFilaTabla ();
+        int filaSeleccionada = jtMaterias.getSelectedRow();
+        if (filaSeleccionada != -1) {
+
+            Alumno a = (Alumno) cboxAlumno.getSelectedItem();
+
+            int idMateria = (Integer) modelo.getValueAt(filaSeleccionada, 0);
+            String nombreMateria = (String) modelo.getValueAt(filaSeleccionada, 1);
+            int año = (Integer) modelo.getValueAt(filaSeleccionada, 2);
+            Materia m = new Materia(idMateria, nombreMateria, año, true);
+
+            Inscripcion i = new Inscripcion(0, a, m);
+            inscData.guardarInscripcion(i);
+            borrarFilaTabla();
         }
 
 
@@ -332,20 +322,15 @@ public class FormularioInscripcion extends javax.swing.JInternalFrame {
 
     private void jBAInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAInscribirActionPerformed
 
-        int filaSeleccionada=jtMaterias.getSelectedRow();
-        if(filaSeleccionada !=-1){
-        
-        Alumno a=(Alumno)cboxAlumno.getSelectedItem();
-        int idMateria=(Integer)modelo.getValueAt(filaSeleccionada, 0);
-        inscData.borrarInscripcion(a.getIdAlumno(), idMateria);
-        borrarFilaTabla();
-        
+        int filaSeleccionada = jtMaterias.getSelectedRow();
+        if (filaSeleccionada != -1) {
+
+            Alumno a = (Alumno) cboxAlumno.getSelectedItem();
+            int idMateria = (Integer) modelo.getValueAt(filaSeleccionada, 0);
+            inscData.borrarInscripcion(a.getIdAlumno(), idMateria);
+            borrarFilaTabla();
+
         }
-        
-        
-
-
-
 
 
     }//GEN-LAST:event_jBAInscribirActionPerformed
