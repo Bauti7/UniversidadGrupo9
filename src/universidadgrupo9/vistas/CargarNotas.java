@@ -5,6 +5,7 @@
  */
 package universidadgrupo9.vistas;
 
+import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -12,6 +13,7 @@ import universidadgrupo9.accesoADatos.AlumnoData;
 import universidadgrupo9.accesoADatos.InscripcionData;
 import universidadgrupo9.accesoADatos.MateriaData;
 import universidadgrupo9.entidades.Alumno;
+import universidadgrupo9.entidades.Inscripcion;
 import universidadgrupo9.entidades.Materia;
 
 /**
@@ -43,7 +45,7 @@ public class CargarNotas extends javax.swing.JInternalFrame {
         mData = new MateriaData();
         cargaNotas();
         armarCabeceraTabla();
-       
+        llenarTabla();
 
     }
 
@@ -65,6 +67,11 @@ public class CargarNotas extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Selecciona un Alumno:");
 
+        jcSelecAlumnos.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcSelecAlumnosItemStateChanged(evt);
+            }
+        });
         jcSelecAlumnos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcSelecAlumnosActionPerformed(evt);
@@ -94,6 +101,11 @@ public class CargarNotas extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jtAlumnos);
 
         jbGuardar.setText("Guardar");
+        jbGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbGuardarActionPerformed(evt);
+            }
+        });
 
         jbSalir.setText("Salir");
         jbSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -126,9 +138,7 @@ public class CargarNotas extends javax.swing.JInternalFrame {
                         .addComponent(jLabel2)
                         .addGap(26, 26, 26)
                         .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel1)
                             .addComponent(jcSelecAlumnos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(57, 57, 57))
@@ -166,20 +176,36 @@ public class CargarNotas extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jcSelecAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcSelecAlumnosActionPerformed
-
-
+        
+        
+    //limpiarTabla();
+    
     }//GEN-LAST:event_jcSelecAlumnosActionPerformed
+
+    
+    private void limpiarTabla() {
+    DefaultTableModel modelo = (DefaultTableModel) jtAlumnos.getModel();
+    modelo.setRowCount(0);
+}
+
+   
+  
+
+
+
 
     private void cargaNotas() {
 
         for (Alumno item : listaA) {
             jcSelecAlumnos.addItem(item);
+            
+        
         }
 
     }
 
     private void armarCabeceraTabla() {
-
+        
         ArrayList<Object> filaCabecera = new ArrayList<>();
         filaCabecera.add(" Codigo: ");
         filaCabecera.add(" Nombre: ");
@@ -192,33 +218,30 @@ public class CargarNotas extends javax.swing.JInternalFrame {
         }
         jtAlumnos.setModel(modelo);
 
-        
-        Alumno selec = (Alumno) jcSelecAlumnos.getSelectedItem();
-        List<Materia> lista = (ArrayList) inscData.obtenerMateriaCursada(selec.getIdAlumno());
-        
-        DefaultTableModel modelo=(DefaultTableModel) jtAlumnos.getModel();
-        modelo.setRowCount(0);
-        
-        for (Materia m : lista) {
-
-            modelo.addRow(new Object[]{m.getIdMateria(), m.getNombre(), m.getAño()});
-        }
     }
-
-   /* private void llenarTabla() {
-      Alumno selec = (Alumno) jcSelecAlumnos.getSelectedItem();
-        List<Materia> lista = (ArrayList) inscData.obtenerMateriaCursada(selec.getIdAlumno());
-        
-        DefaultTableModel modelo=(DefaultTableModel) jtAlumnos.getModel();
-        modelo.setRowCount(0);
-        
-        for (Materia m : lista) {
-
-            modelo.addRow(new Object[]{m.getIdMateria(), m.getNombre(), m.getAño()});
-        }
-    }
-*/
     
+    
+    
+    private void llenarTabla() {
+         Inscripcion in= new Inscripcion();
+        int nota= in.getNota();
+        System.out.println(nota);
+        
+        
+        
+        Alumno selec = (Alumno) jcSelecAlumnos.getSelectedItem(); 
+        
+        List<Materia> listaM = inscData.obtenerMateriaCursada(selec.getIdAlumno());
+        
+        
+        
+         
+        
+        for (Materia m : listaM) {
+            modelo.addRow(new Object[]{m.getIdMateria(), m.getNombre(),  });
+        }
+
+    }
 
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
@@ -231,7 +254,31 @@ public class CargarNotas extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jtAlumnosAncestorAdded
 
+    private void jcSelecAlumnosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcSelecAlumnosItemStateChanged
 
+   if (evt.getStateChange() == ItemEvent.SELECTED) {
+            limpiarTabla();
+            llenarTabla();
+            
+        }
+
+
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcSelecAlumnosItemStateChanged
+
+    private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
+
+        
+        mData.guardarMateria(materiaActual);
+        
+
+       
+    }//GEN-LAST:event_jbGuardarActionPerformed
+
+
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;

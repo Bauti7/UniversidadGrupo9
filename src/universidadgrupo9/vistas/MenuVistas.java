@@ -170,13 +170,13 @@ public class MenuVistas extends javax.swing.JFrame {
         inscrip.getContentPane().setBackground(Color.white);
         jEscritorio.add(inscrip);
 
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_jManejoInsActionPerformed
 
     private void jSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSalirActionPerformed
 
 
-    dispose();        // TODO add your handling code here:
+    dispose();       
     }//GEN-LAST:event_jSalirActionPerformed
 
     private void jManipulacionNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jManipulacionNActionPerformed

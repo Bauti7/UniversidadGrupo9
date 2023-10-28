@@ -50,7 +50,7 @@ public class FormularioInscripcion extends javax.swing.JInternalFrame {
     }
 
     private void armarCabeceraTabla() {
-
+        
         ArrayList<Object> filaCabecera = new ArrayList<>();
         filaCabecera.add(" ID: ");
         filaCabecera.add(" Nombre: ");
