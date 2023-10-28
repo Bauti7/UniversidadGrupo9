@@ -43,8 +43,8 @@
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jcSelecAlumno" min="-2" pref="191" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="cboxAlumno" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
@@ -57,9 +57,9 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-                          <Component id="jtMinscripta" min="-2" max="-2" attributes="0"/>
+                          <Component id="radioInscriptas" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
-                          <Component id="jtMNoInscripta" min="-2" max="-2" attributes="0"/>
+                          <Component id="radioNoInscriptas" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
@@ -70,9 +70,9 @@
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                  <Component id="jbInscribir" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBInscribir" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
-                  <Component id="jbAnularInscripcion" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBAInscribir" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="jbSalir" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
@@ -87,21 +87,21 @@
                   <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jcSelecAlumno" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cboxAlumno" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jtMinscripta" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jtMNoInscripta" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="radioInscriptas" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="radioNoInscriptas" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="106" max="-2" attributes="0"/>
                   <EmptySpace pref="70" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jbInscribir" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jbAnularInscripcion" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jBInscribir" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jBAInscribir" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jbSalir" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
@@ -123,19 +123,17 @@
             <Property name="text" type="java.lang.String" value="Seleccione un Alumno:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jcSelecAlumno">
+        <Component class="javax.swing.JComboBox" name="cboxAlumno">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cboxAlumnoActionPerformed"/>
+          </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Alumno&gt;"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
@@ -146,15 +144,21 @@
             <Property name="text" type="java.lang.String" value="Listado de Materias:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="jtMinscripta">
+        <Component class="javax.swing.JRadioButton" name="radioInscriptas">
           <Properties>
             <Property name="text" type="java.lang.String" value="Materias Inscriptas"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioInscriptasActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="jtMNoInscripta">
+        <Component class="javax.swing.JRadioButton" name="radioNoInscriptas">
           <Properties>
             <Property name="text" type="java.lang.String" value="Materias no Inscriptas"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioNoInscriptasActionPerformed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
           <AuxValues>
@@ -163,7 +167,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jtAlumnos">
+            <Component class="javax.swing.JTable" name="jtMaterias">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="4" rowCount="4">
@@ -177,20 +181,31 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="jbInscribir">
+        <Component class="javax.swing.JButton" name="jBInscribir">
           <Properties>
             <Property name="text" type="java.lang.String" value="Inscribir"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBInscribirActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jbAnularInscripcion">
+        <Component class="javax.swing.JButton" name="jBAInscribir">
           <Properties>
             <Property name="text" type="java.lang.String" value="Anular Inscripci&#xf3;n"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBAInscribirActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jbSalir">
           <Properties>
             <Property name="text" type="java.lang.String" value="Salir"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbSalirActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
