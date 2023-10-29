@@ -19,6 +19,8 @@ public class MateriaData {
     
     }
     
+      //--------------Guardar Materia-----------------------------------
+    
     public void guardarMateria(Materia materia){
     
         String sql = "INSERT INTO materia (nombre, año, estado)"
@@ -52,6 +54,8 @@ public class MateriaData {
         }
          
     }
+    
+      //--------------Buscar Materia-----------------------------------
     
     public Materia buscarMateria(int id){
     
@@ -95,6 +99,8 @@ public class MateriaData {
     
     }
     
+      //--------------Modificar Materia-----------------------------------
+    
     public void modificarMateria(Materia materia){
     
         String sql = "UPDATE materia SET nombre = ?, año = ?, estado = ? WHERE idMateria = ?";
@@ -124,6 +130,8 @@ public class MateriaData {
         
     }
     
+      //--------------Eliminar Materia-----------------------------------
+    
     public void eliminarMateria(int id){
     
         String sql = "UPDATE materia SET estado = 0 WHERE idMateria = ?";
@@ -149,6 +157,8 @@ public class MateriaData {
         }
     
     }
+    
+      //--------------Listar Materias-----------------------------------
     
     public List<Materia> listarMaterias(){
     

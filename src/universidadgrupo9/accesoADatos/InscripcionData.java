@@ -27,6 +27,8 @@ public class InscripcionData {
     
     }
     
+    //--------------Guardar Inscripcion-----------------------------------
+    
     public void guardarInscripcion(Inscripcion insc){
     
         String sql = "INSERT INTO inscripcion(nota, idAlumno, idMateria)"
@@ -62,6 +64,8 @@ public class InscripcionData {
        
     }
     
+      //--------------Actualizar Nota-----------------------------------
+    
     public void actualizarNota(int nota, int idAlumno, int idMateria){
     
         String sql = "UPDATE inscripcion SET nota = ? WHERE idAlumno = ?"
@@ -92,6 +96,8 @@ public class InscripcionData {
         }
         
     }
+    
+      //--------------Borrar Inscripción-----------------------------------
     
     public void borrarInscripcion(int idAlumno, int idMateria){
     
@@ -124,6 +130,8 @@ public class InscripcionData {
         
         }                 
     }
+    
+      //--------------Obtener Inscripciones-----------------------------------
     
     public List<Inscripcion> obtenerInscripciones(){
     
@@ -164,6 +172,8 @@ public class InscripcionData {
         return inscripciones;
         
     }
+       
+      //--------------Obtener Inscripciones Por ID-----------------------------------
     
     public List<Inscripcion> obtenerInscripcionesPorId(int idAlumno){
     
@@ -207,6 +217,8 @@ public class InscripcionData {
         
     }
     
+      //--------------Obtener Materia Cursada-----------------------------------
+    
     public List<Materia> obtenerMateriaCursada(int idAlumno){
     
         ArrayList<Materia> materias = new ArrayList<>();
@@ -247,6 +259,9 @@ public class InscripcionData {
     
     }
     
+      //--------------Obtener Materias No Cursadas-----------------------------------
+    
+    
     public List<Materia> obtenerMateriasNoCursadas(int idAlumno){
     
         ArrayList<Materia> materias = new ArrayList<>();
@@ -285,6 +300,8 @@ public class InscripcionData {
         return materias;
     
     }
+    
+      //--------------Obtener Alumnos Por Materia-----------------------------------
     
     public List<Alumno> obtenerAlumnosPorMateria(int idMateria){
     

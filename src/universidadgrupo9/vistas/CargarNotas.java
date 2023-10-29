@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package universidadgrupo9.vistas;
 
 import java.awt.event.ItemEvent;
@@ -16,10 +11,6 @@ import universidadgrupo9.entidades.Alumno;
 import universidadgrupo9.entidades.Inscripcion;
 import universidadgrupo9.entidades.Materia;
 
-/**
- *
- * @author Bau
- */
 public class CargarNotas extends javax.swing.JInternalFrame {
 
     /*private AlumnoData aluData = new AlumnoData();
@@ -176,36 +167,29 @@ public class CargarNotas extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jcSelecAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcSelecAlumnosActionPerformed
-        
-        
-    //limpiarTabla();
-    
+
+        //limpiarTabla();
+
     }//GEN-LAST:event_jcSelecAlumnosActionPerformed
 
-    
+    //--------------Limpiar Tabla-----------------------------------
     private void limpiarTabla() {
-    DefaultTableModel modelo = (DefaultTableModel) jtAlumnos.getModel();
-    modelo.setRowCount(0);
-}
+        DefaultTableModel modelo = (DefaultTableModel) jtAlumnos.getModel();
+        modelo.setRowCount(0);
+    }
 
-   
-  
-
-
-
-
+    //--------------Cargar Notas-----------------------------------
     private void cargaNotas() {
 
         for (Alumno item : listaA) {
             jcSelecAlumnos.addItem(item);
-            
-        
-        }
 
+        }
     }
 
+    //--------------Armar Cabecera de la Tabla-----------------------------------
     private void armarCabeceraTabla() {
-        
+
         ArrayList<Object> filaCabecera = new ArrayList<>();
         filaCabecera.add(" Codigo: ");
         filaCabecera.add(" Nombre: ");
@@ -219,26 +203,23 @@ public class CargarNotas extends javax.swing.JInternalFrame {
         jtAlumnos.setModel(modelo);
 
     }
-    
-    
-    
+
+    //--------------Llenar Tabla-----------------------------------
     private void llenarTabla() {
-         Inscripcion in= new Inscripcion();
-        int nota= in.getNota();
-        System.out.println(nota);
-        
-        
-        
-        Alumno selec = (Alumno) jcSelecAlumnos.getSelectedItem(); 
-        
-        List<Materia> listaM = inscData.obtenerMateriaCursada(selec.getIdAlumno());
-        
-        
-        
-         
-        
+        //Inscripcion in= (Inscripcion) jcSelecAlumnos.getSelectedItem();
+        // int nota= in.getNota();
+        //System.out.println(nota);
+
+        Alumno selec = (Alumno) jcSelecAlumnos.getSelectedItem();
+        Inscripcion i = new Inscripcion();
+        Materia mm = new Materia();
+
+        //List<Materia> listaM = inscData.actualizarNota(i.getNota(), );
+        //  int nota = inscData.obtenerInscripciones(selec.getIdAlumno());
         for (Materia m : listaM) {
-            modelo.addRow(new Object[]{m.getIdMateria(), m.getNombre(),  });
+
+            //= inscData.actualizarNota(i.getNota(), selec.getIdAlumno(), m.getIdMateria());
+            modelo.addRow(new Object[]{m.getIdMateria(), m.getNombre(), m});
         }
 
     }
@@ -246,7 +227,6 @@ public class CargarNotas extends javax.swing.JInternalFrame {
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         dispose();
-// TODO add your handling code here:
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jtAlumnosAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jtAlumnosAncestorAdded
@@ -256,29 +236,17 @@ public class CargarNotas extends javax.swing.JInternalFrame {
 
     private void jcSelecAlumnosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcSelecAlumnosItemStateChanged
 
-   if (evt.getStateChange() == ItemEvent.SELECTED) {
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
             limpiarTabla();
             llenarTabla();
-            
         }
-
-
-
-
-        // TODO add your handling code here:
     }//GEN-LAST:event_jcSelecAlumnosItemStateChanged
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
 
-        
-        mData.guardarMateria(materiaActual);
-        
-
-       
     }//GEN-LAST:event_jbGuardarActionPerformed
 
 
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;

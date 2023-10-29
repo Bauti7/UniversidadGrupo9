@@ -47,7 +47,7 @@
                           <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
-                          <Component id="jcSelecMaterias" min="-2" pref="170" max="-2" attributes="0"/>
+                          <Component id="jcMaterias" min="-2" pref="170" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -70,7 +70,7 @@
                   <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jcSelecMaterias" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jcMaterias" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="251" max="-2" attributes="0"/>
@@ -95,19 +95,18 @@
             <Property name="text" type="java.lang.String" value="Selecciona una Materia:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jcSelecMaterias">
+        <Component class="javax.swing.JComboBox" name="jcMaterias">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jcMateriasItemStateChanged"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jcMateriasActionPerformed"/>
+          </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Materia&gt;"/>
           </AuxValues>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -135,6 +134,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Salir"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jbSalirMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

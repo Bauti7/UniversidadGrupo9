@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package universidadgrupo9.vistas;
 
 import java.time.LocalDate;
@@ -11,22 +6,16 @@ import javax.swing.JOptionPane;
 import universidadgrupo9.accesoADatos.MateriaData;
 import universidadgrupo9.entidades.Materia;
 
-/**
- *
- * @author Bau
- */
 public class GestionMaterias extends javax.swing.JInternalFrame {
 
-    
-    private MateriaData mat= new MateriaData();
-    private Materia materiaActual=null;
-    
-   
+    private MateriaData mat = new MateriaData();
+    private Materia materiaActual = null;
+
+    //--------------Gestion Materias-----------------------------------
     public GestionMaterias() {
         initComponents();
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -197,78 +186,62 @@ public class GestionMaterias extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //--------------Guardar-----------------------------------
+
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
 
-        
-        try{
-        String nombre= jtNombre.getText();
-        //NO OLVIDAR ARREGLAR ESTO AÑO
-        Integer año=Integer.parseInt(jtAño.getText());
-          Boolean estado= jrEstado.isSelected();
-        if(nombre.isEmpty() || año==0){
-        
-         JOptionPane.showMessageDialog(this,"No puede haber campos vacios" );
-            return;
-             
-            
+        try {
+            String nombre = jtNombre.getText();
+            //NO OLVIDAR ARREGLAR ESTO AÑO
+            Integer año = Integer.parseInt(jtAño.getText());
+            Boolean estado = jrEstado.isSelected();
+            if (nombre.isEmpty() || año == 0) {
+
+                JOptionPane.showMessageDialog(this, "No puede haber campos vacios");
+                return;
+
+            }
+            if (materiaActual == null) {
+
+                materiaActual = new Materia(nombre, año, estado);
+                mat.guardarMateria(materiaActual);
+
+            } else {
+
+                materiaActual.setNombre(nombre);
+                materiaActual.setAño(0);
+                materiaActual.setEstado(true);
+                mat.modificarMateria(materiaActual);
+
+            }
+
+        } catch (NumberFormatException ex) {
         }
-        
-        
-        
-           if(materiaActual==null){
-           
-           materiaActual = new Materia(nombre, año,estado);
-           mat.guardarMateria(materiaActual);
-           
-           }else{
-           
-           materiaActual.setNombre(nombre);
-           materiaActual.setAño(0);
-           materiaActual.setEstado(true);
-           mat.modificarMateria(materiaActual);
-           
-           
-           }
-
-                
-                
-                
-        }catch(NumberFormatException ex){
-        
-        
-        
-        }
-
-
-
     }//GEN-LAST:event_jbGuardarActionPerformed
+
+    //--------------Buscar-----------------------------------
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
 
-        try{
-        
-        Integer id= Integer.parseInt(jtCodigo.getText());
-        
-               
-       materiaActual=mat.buscarMateria(id);
-       
-       if(materiaActual!=null){
-           
-       jtNombre.setText(materiaActual.getNombre());
-       jtAño.setText(String.valueOf(materiaActual.getAño()));
-       jrEstado.setSelected(materiaActual.isEstado());
-      
-     
-       }
-        
-        
-        }catch(NumberFormatException ex){
-                    JOptionPane.showMessageDialog(this, "Debe ingresar un numero valido");
+        try {
+
+            Integer id = Integer.parseInt(jtCodigo.getText());
+
+            materiaActual = mat.buscarMateria(id);
+
+            if (materiaActual != null) {
+
+                jtNombre.setText(materiaActual.getNombre());
+                jtAño.setText(String.valueOf(materiaActual.getAño()));
+                jrEstado.setSelected(materiaActual.isEstado());
+
+            }
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar un numero valido");
 
         }
-        
-        
-        
+
         /*
 
   try {
@@ -292,58 +265,41 @@ public class GestionMaterias extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Debe ingresar un numero valido");
 
         }
-*/
+         */
         // TODO add your handling code here:
     }//GEN-LAST:event_jbBuscarActionPerformed
 
+    //--------------Nuevo-----------------------------------
+
     private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
-
         limpiarCampos();
-        materiaActual=null;
-        
-                
-        
-        
-      
-
-
-        // TODO add your handling code here:
+        materiaActual = null;
     }//GEN-LAST:event_jbNuevoActionPerformed
+
+    //--------------Eliminar-----------------------------------
 
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
 
-        if(materiaActual!=null){
-        mat.eliminarMateria(materiaActual.getIdMateria());
-        materiaActual=null;
-        limpiarCampos();
-        
-        }else{
-        
+        if (materiaActual != null) {
+            mat.eliminarMateria(materiaActual.getIdMateria());
+            materiaActual = null;
+            limpiarCampos();
+        } else {
             JOptionPane.showMessageDialog(this, "No hay un alumno seleccionado");
-
-        
         }
-
-
-
-        // TODO add your handling code here:
     }//GEN-LAST:event_jbEliminarActionPerformed
 
+    //--------------Salir-----------------------------------
+
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
-
-
-
-
         dispose();
-        // TODO add your handling code here:
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jtAñoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtAñoActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jtAñoActionPerformed
 
-
-    
+    //--------------Limpiar Campos-----------------------------------
     public void limpiarCampos() {
         jtCodigo.setText("");
         jtNombre.setText("");

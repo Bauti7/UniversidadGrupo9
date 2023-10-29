@@ -18,16 +18,14 @@ public class FormularioInscripcion extends javax.swing.JInternalFrame {
 
     private AlumnoData aluData = new AlumnoData();
     private Alumno alumnoActual = null;
-
     private ArrayList<Materia> listaM;
     private ArrayList<Alumno> listaA;
-
     private InscripcionData inscData;
     private MateriaData mData;
     private AlumnoData aData;
-
     private DefaultTableModel modelo;
 
+    //--------------Formulario de Inscripcion-----------------------------------
     public FormularioInscripcion() {
         initComponents();
 
@@ -41,41 +39,39 @@ public class FormularioInscripcion extends javax.swing.JInternalFrame {
 
     }
 
+    //--------------Carga de Alumnos-----------------------------------
     private void cargaAlumnos() {
 
         for (Alumno item : listaA) {
             cboxAlumno.addItem(item);
         }
-
     }
+    //--------------Cabecera de la tabla-----------------------------------
 
     private void armarCabeceraTabla() {
-        
+
         ArrayList<Object> filaCabecera = new ArrayList<>();
         filaCabecera.add(" ID: ");
         filaCabecera.add(" Nombre: ");
         filaCabecera.add(" Año: ");
 
         for (Object it : filaCabecera) {
-
             modelo.addColumn(it);
-
         }
         jtMaterias.setModel(modelo);
 
     }
 
+    //--------------Borrar Filas-----------------------------------
     private void borrarFilaTabla() {
         int indice = modelo.getRowCount() - 1;
 
         for (int i = indice; i >= 0; i--) {
-
             modelo.removeRow(i);
-
         }
-
     }
 
+    //--------------Cargar datos de materias no Inscriptas-----------------------------------
     private void cargaDatosNoInscriptas() {
 
         Alumno selec = (Alumno) cboxAlumno.getSelectedItem();
@@ -87,6 +83,7 @@ public class FormularioInscripcion extends javax.swing.JInternalFrame {
         }
     }
 
+    //--------------Carga de datos materias inscriptas-----------------------------------
     private void cargaDatosInscriptas() {
         Alumno selec = (Alumno) cboxAlumno.getSelectedItem();
         List<Materia> lista = (ArrayList) inscData.obtenerMateriaCursada(selec.getIdAlumno());
@@ -267,15 +264,10 @@ public class FormularioInscripcion extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cboxAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxAlumnoActionPerformed
-
-
     }//GEN-LAST:event_cboxAlumnoActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
-
         dispose();
-
-        // TODO add your handling code here:
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void radioNoInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNoInscriptasActionPerformed
@@ -286,7 +278,6 @@ public class FormularioInscripcion extends javax.swing.JInternalFrame {
         jBInscribir.setEnabled(true);
         jBAInscribir.setEnabled(false);
 
-
     }//GEN-LAST:event_radioNoInscriptasActionPerformed
 
     private void radioInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioInscriptasActionPerformed
@@ -296,8 +287,6 @@ public class FormularioInscripcion extends javax.swing.JInternalFrame {
         cargaDatosInscriptas();
         jBAInscribir.setEnabled(true);
         jBInscribir.setEnabled(false);
-
-        // TODO add your handling code here:
     }//GEN-LAST:event_radioInscriptasActionPerformed
 
     private void jBInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBInscribirActionPerformed
