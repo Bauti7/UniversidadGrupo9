@@ -66,7 +66,7 @@ public class InscripcionData {
     
       //--------------Actualizar Nota-----------------------------------
     
-    public void actualizarNota(int nota, int idAlumno, int idMateria){
+    public void actualizarNota( int idAlumno, int idMateria, int nota){
     
         String sql = "UPDATE inscripcion SET nota = ? WHERE idAlumno = ?"
                 + " AND idMateria = ?";
