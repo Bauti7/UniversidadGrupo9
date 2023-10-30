@@ -3,6 +3,7 @@ package universidadgrupo9.vistas;
 import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import universidadgrupo9.accesoADatos.AlumnoData;
 import universidadgrupo9.accesoADatos.InscripcionData;
@@ -166,6 +167,8 @@ public class CargarNotas extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
     private void jcSelecAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcSelecAlumnosActionPerformed
 
         //limpiarTabla();
@@ -206,24 +209,19 @@ public class CargarNotas extends javax.swing.JInternalFrame {
 
     //--------------Llenar Tabla-----------------------------------
     private void llenarTabla() {
-        //Inscripcion in= (Inscripcion) jcSelecAlumnos.getSelectedItem();
-        // int nota= in.getNota();
-        //System.out.println(nota);
-
+       
+        try{
         Alumno selec = (Alumno) jcSelecAlumnos.getSelectedItem();
-        Inscripcion i = new Inscripcion();
-        Materia mm = new Materia();
+        ArrayList<Inscripcion> inscripciones = (ArrayList<Inscripcion>) inscData.obtenerInscripcionesPorId(selec.getIdAlumno());
+      
+        for (Inscripcion inscripcion : inscripciones) {
 
-        //List<Materia> listaM = inscData.actualizarNota(i.getNota(), );
-        //  int nota = inscData.obtenerInscripciones(selec.getIdAlumno());
-        for (Materia m : listaM) {
-
-            //= inscData.actualizarNota(i.getNota(), selec.getIdAlumno(), m.getIdMateria());
-            modelo.addRow(new Object[]{m.getIdMateria(), m.getNombre(), m});
+           
+            modelo.addRow(new Object[] {inscripcion.getMateria().getIdMateria(), inscripcion.getMateria().getNombre(), inscripcion.getNota()});
+            
         }
-
+        }catch(NullPointerException ex){}
     }
-
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         dispose();
@@ -234,16 +232,42 @@ public class CargarNotas extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jtAlumnosAncestorAdded
 
-    private void jcSelecAlumnosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcSelecAlumnosItemStateChanged
+        //--------------Seleccionar Alumno-----------------------------------
 
+    private void jcSelecAlumnosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcSelecAlumnosItemStateChanged
+        
         if (evt.getStateChange() == ItemEvent.SELECTED) {
             limpiarTabla();
             llenarTabla();
         }
     }//GEN-LAST:event_jcSelecAlumnosItemStateChanged
 
+    //--------------Guardar Nota----------------------------------
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
+        try {
+            Alumno alumnoSeleccionado = (Alumno) jcSelecAlumnos.getSelectedItem();
+        
+            int fila = jtAlumnos.getSelectedRow();
 
+            int idMateria = (int) modelo.getValueAt(fila, 0);
+            int idAlumno = alumnoSeleccionado.getIdAlumno();
+            int nota = Integer.parseInt((String) modelo.getValueAt(fila, 2));
+
+            if (nota > 10 || nota < 0) {
+                JOptionPane.showMessageDialog(this, "Ingrese una nota correcta.");
+                return;
+            }
+
+            inscData.actualizarNota(idAlumno, idMateria, nota);
+
+            limpiarTabla();
+            jcSelecAlumnos.setSelectedIndex(-1);
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            JOptionPane.showMessageDialog(this, "Ingrese una fila para guardar la nota.");
+        } catch (ClassCastException ex) {
+            JOptionPane.showMessageDialog(this, "Confirme la nota a guardar.");
+        }
+        
     }//GEN-LAST:event_jbGuardarActionPerformed
 
 
